@@ -14,6 +14,7 @@ func main() {
 	beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 	beego.ErrorHandler("404", page_not_found)
 	beego.ErrorHandler("401", page_note_permission)
+	//beego.AutoRender = false
 	beego.Run()
 
 }

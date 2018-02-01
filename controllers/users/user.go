@@ -18,6 +18,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/utils/pagination"
 	"github.com/oliamb/cutter"
 )
@@ -49,8 +50,8 @@ func (this *LoginUserController) Get() {
 func (this *LoginUserController) Post() {
 	username := this.GetString("username")
 	password := this.GetString("password")
-	
-	
+
+	logs.Info("welcome login \\n")
 	
 
 	if "" == username {
