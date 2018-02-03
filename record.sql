@@ -883,65 +883,66 @@ insert  into `pms_users_profile`(`userid`,`realname`,`sex`,`birth`,`email`,`webc
 
 
 /*!房产交易系统开始 */
+
 DROP TABLE IF EXISTS `pms_customer`;
 CREATE TABLE `pms_customer` (
-  `customer_id` bigint(20) NOT COMMENT '用户id，主键id',
-  `real_name` varchar(15) DEFAULT NULL COMMENT '姓名',
-  `sex` tinyint(1) DEFAULT '1' COMMENT '1-男,2-女',
-  `birth` varchar(15) DEFAULT NULL COMMENT '出生日期',,
-  `email` varchar(30) DEFAULT NULL COMMENT '邮箱',
-  `webchat` varchar(15) DEFAULT NULL COMMENT '微信号',
-  `qq` varchar(15) DEFAULT NULL COMMENT 'qq号',
-  `phone` varchar(15) DEFAULT NULL COMMENT '手机',
-  `tel` varchar(20) DEFAULT NULL COMMENT '固定电话',
-  `address` varchar(100) DEFAULT NULL COMMENT '地址',
-  `photo` varchar(200) DEFAULT NULL COMMENT '头像地址',
-  `customer_type` varchar(2) DEFAULT NULL COMMENT '客户类型，1-卖家，2-买家,3-中介',
-  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
-  `update_time` timestamp NOT NULL  COMMENT '更新时间',
-  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  `customer_id` BIGINT(20) NOT NULL COMMENT '用户id，主键id',
+  `real_name` VARCHAR(15) DEFAULT NULL COMMENT '姓名',
+  `sex` TINYINT(1) DEFAULT '1' COMMENT '1-男,2-女',
+  `birth` VARCHAR(15) DEFAULT NULL COMMENT '出生日期',
+  `email` VARCHAR(30) DEFAULT NULL COMMENT '邮箱',
+  `webchat` VARCHAR(15) DEFAULT NULL COMMENT '微信号',
+  `qq` VARCHAR(15) DEFAULT NULL COMMENT 'qq号',
+  `phone` VARCHAR(15) DEFAULT NULL COMMENT '手机',
+  `tel` VARCHAR(20) DEFAULT NULL COMMENT '固定电话',
+  `address` VARCHAR(100) DEFAULT NULL COMMENT '地址',
+  `photo` VARCHAR(200) DEFAULT NULL COMMENT '头像地址',
+  `customer_type` VARCHAR(2) DEFAULT NULL COMMENT '客户类型，1-卖家，2-买家,3-中介',
+  `insert_time` TIMESTAMP NOT NULL  COMMENT '插入时间',
+  `update_time` TIMESTAMP NOT NULL  COMMENT '更新时间',
+  `is_active` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   PRIMARY KEY (`customer_id`),  
-  KEY `INDEX_RSL` (`realname`,`sex`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户信息表';
+  KEY `INDEX_RSL` (`real_name`,`sex`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='客户信息表';
 
 
 DROP TABLE IF EXISTS `pms_contract`;
 CREATE TABLE `pms_contract` (
-  `contract_id` bigint(20) NOT NULL COMMENT '合同id，主键id',
-  `contract_name` varchar(200) DEFAULT NULL COMMENT '合同名称',
-  `contract_content` varchar(100) DEFAULT NULL COMMENT '合同内容',
-  `photo` varchar(2000) DEFAULT NULL COMMENT '头像地址',
-  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
-  `update_time` timestamp NOT NULL  COMMENT '更新时间',
-  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  `contract_id` BIGINT(20) NOT NULL COMMENT '合同id，主键id',
+  `contract_name` VARCHAR(200) DEFAULT NULL COMMENT '合同名称',
+  `contract_content` VARCHAR(100) DEFAULT NULL COMMENT '合同内容',
+  `photo` VARCHAR(2000) DEFAULT NULL COMMENT '头像地址',
+  `insert_time` TIMESTAMP NOT NULL  COMMENT '插入时间',
+  `update_time` TIMESTAMP NOT NULL  COMMENT '更新时间',
+  `is_active` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   PRIMARY KEY (`contract_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同信息表';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='合同信息表';
 
 
 DROP TABLE IF EXISTS `pms_contract_status`;
 CREATE TABLE `pms_contract_status` (
-  `status_id` bigint(20) NOT COMMENT '合同状态表id，主键id',
-  `contract_id` bigint(20)  COMMENT '合同id',
-  `buyer_id` bigint(20)  COMMENT '买家id',
-  `seller_id` bigint(20)  COMMENT '卖家id',
-  `contract_status` int(3)  COMMENT '当前合同状态，1-买家已交定金，2-买家已交首付款，3-卖家已过户给买家，4-买家办理公积金贷款中，5-买家办理商业贷款中，6-买家办理组合贷款中（公积金+商业贷款），7-买家全款买房，8-付尾款，9-交易结束',
-  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
-  `update_time` timestamp NOT NULL  COMMENT '更新时间',
-  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  `status_id` BIGINT(20) NOT NULL COMMENT '合同状态表id，主键id',
+  `contract_id` BIGINT(20)  COMMENT '合同id',
+  `buyer_id` BIGINT(20)  COMMENT '买家id',
+  `seller_id` BIGINT(20)  COMMENT '卖家id',
+  `contract_status` INT(3)  COMMENT '当前合同状态，1-买家已交定金，2-买家已交首付款，3-卖家已过户给买家，4-买家办理公积金贷款中，5-买家办理商业贷款中，6-买家办理组合贷款中（公积金+商业贷款），7-买家全款买房，8-付尾款，9-交易结束',
+  `insert_time` TIMESTAMP NOT NULL  COMMENT '插入时间',
+  `update_time` TIMESTAMP NOT NULL  COMMENT '更新时间',
+  `is_active` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   PRIMARY KEY (`status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同状态表';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='合同状态表';
 
 DROP TABLE IF EXISTS `pms_contract_record`;
 CREATE TABLE `pms_contract_record` (
-  `record_id` bigint(20) NOT NULL COMMENT '记录id，主键id',
-  `contract_id` bigint(20) NOT NULL COMMENT '合同id',
-   `contract_status` int(3)  COMMENT '当前合同状态，1-买家已交定金，2-买家已交首付款，3-卖家已过户给买家，4-买家办理公积金贷款中，5-买家办理商业贷款中，6-买家办理组合贷款中（公积金+商业贷款），7-买家全款买房，8-付尾款，9-交易结束',
-   `record_time` timestamp NOT NULL  COMMENT '记录时间',
-  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
-  `update_time` timestamp NOT NULL  COMMENT '更新时间',
-  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  `record_id` BIGINT(20) NOT NULL COMMENT '记录id，主键id',
+  `contract_id` BIGINT(20) NOT NULL COMMENT '合同id',
+   `contract_status` INT(3)  COMMENT '当前合同状态，1-买家已交定金，2-买家已交首付款，3-卖家已过户给买家，4-买家办理公积金贷款中，5-买家办理商业贷款中，6-买家办理组合贷款中（公积金+商业贷款），7-买家全款买房，8-付尾款，9-交易结束',
+   `record_time` TIMESTAMP NOT NULL  COMMENT '记录时间',
+  `insert_time` TIMESTAMP NOT NULL  COMMENT '插入时间',
+  `update_time` TIMESTAMP NOT NULL  COMMENT '更新时间',
+  `is_active` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   PRIMARY KEY (`record_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同交易记录表';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='合同交易记录表';
 
 /***** 房产交易系统结束 ******/
 
