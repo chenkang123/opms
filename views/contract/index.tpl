@@ -16,15 +16,7 @@
       <!--toggle button end-->
       <!--search start-->
       <form class="searchform" action="/contract/manage" method="get">
-        <select name="status" class="form-control">
-          <option value="">状态</option>
-          <option value="1" {{if eq "1" .condArr.status}}selected{{end}}>入档</option>
-          <option value="2" {{if eq "2" .condArr.status}}selected{{end}}>通知面试</option>
-		<option value="3" {{if eq "3" .condArr.status}}selected{{end}}>违约</option>
-		<option value="4" {{if eq "4" .condArr.status}}selected{{end}}>录用</option>
-		<option value="5" {{if eq "5" .condArr.status}}selected{{end}}>不录用</option>
-        </select>
-        <input type="text" class="form-control" name="keywords" placeholder="请输入姓名" value="{{.condArr.keywords}}"/>
+
         <button type="submit" class="btn btn-primary">搜索</button>
       </form>
       <!--search end-->
@@ -32,13 +24,13 @@
     <!-- header section end-->
     <!-- page heading start-->
     <div class="page-heading">
-      <h3> 简历管理 </h3>
+      <h3> 合同管理 </h3>
       <ul class="breadcrumb pull-left">
         <li> <a href="/user/show/{{.LoginUserid}}">OPMS</a> </li>
-        <li> <a href="/contract/manage">简历管理</a> </li>
-        <li class="active"> 简历 </li>
+        <li> <a href="/contract/manage">合同管理</a> </li>
+        <li class="active"> 合同 </li>
       </ul>
-      <div class="pull-right"><a href="/contract/add" class="btn btn-success">+添加新简历</a></div>
+      <div class="pull-right"><a href="/contract/add" class="btn btn-success">+添加新合同</a></div>
     </div>
     <!-- page heading end-->
     <!--body wrapper start-->
@@ -46,7 +38,7 @@
       <div class="row">
         <div class="col-sm-12">
           <section class="panel">
-            <header class="panel-heading"> 简历管理 / 总数：{{.countcontract}}<span class="tools pull-right"><a href="javascript:;" class="fa fa-chevron-down"></a>
+            <header class="panel-heading"> 合同管理 / 总数：{{.countcontract}}<span class="tools pull-right"><a href="javascript:;" class="fa fa-chevron-down"></a>
               <!--a href="javascript:;" class="fa fa-times"></a-->
               </span> </header>
             <div class="panel-body">
@@ -63,38 +55,6 @@
 						<th>合同状态</th>
                       </tr>
                     </thead>
-                    <tbody>
-
-                    {{range $k,$v := .contracts}}
-                    <tr>
-                      <td>{{$v.Realname}}</td>
-					  <td>{{if eq 1 $v.Sex}}男{{else}}女{{end}}</td>
-                      <td>{{$v.Phone}}</td>
-					<td>{{getDate $v.Birth}}</td>
-					<td>{{getEdu $v.Edu}}</td>
-					<td>{{getWorkYear $v.Work}}</td>
-					<td>{{if ne $v.Attachment ""}}<a href="{{$v.Attachment}}" target="_blank">查看预览</a>{{else}}暂无{{end}}</td>
-                      <td>{{getcontractStatus $v.Status}}</td>
-                      <td><div class="btn-group">
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 操作<span class="caret"></span> </button>
-                          <ul class="dropdown-menu">
-                            <li><a href="/contract/edit/{{$v.Id}}">编辑</a></li>
-                            {{if eq 1 $v.Status}}
-							 <li role="separator" class="divider"></li>
-                            <li><a href="javascript:;" class="js-contracts-single" data-id="{{$v.Id}}" data-status="2">通知面试</a></li>
-                            {{else if eq 2 $v.Status}}
-							 <li role="separator" class="divider"></li>
-                            <li><a href="javascript:;" class="js-contracts-single" data-id="{{$v.Id}}" data-status="3">违约</a></li>
-							<li><a href="javascript:;" class="js-contracts-single" data-id="{{$v.Id}}" data-status="4">录用</a></li>
-							<li><a href="javascript:;" class="js-contracts-single" data-id="{{$v.Id}}" data-status="5">不录用</a></li>
-                            {{end}}
-							<li role="separator" class="divider"></li>
-                            <li><a href="javascript:;" class="js-contracts-delete" data-id="{{$v.Id}}">删除</a></li>
-                          </ul>
-                        </div></td>
-                    </tr>
-                    {{end}}
-                    </tbody>
 
                   </table>
                 </form>

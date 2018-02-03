@@ -1,8 +1,8 @@
 package contract
 
-
 import (
 	"opms/controllers"
+	"strings"
 )
 
 /***
@@ -12,20 +12,14 @@ type ManagerContractController struct {
 	controllers.BaseController
 }
 
-
 func (this *ManagerContractController) Get() {
 
-
-
-
-
-
-
+	if !strings.Contains(this.GetSession("userPermission").(string), "permission-manage") {
+		this.Abort("401")
+	}
 
 	this.TplName = "contract/index.tpl"
 }
-
-
 
 func (this *ManagerContractController) Post() {
 
@@ -44,6 +38,7 @@ type AddContractController struct {
 type EditContractController struct {
 	controllers.BaseController
 }
+
 /***
 	合同删除
  */
