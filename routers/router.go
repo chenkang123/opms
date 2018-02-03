@@ -17,6 +17,7 @@ import (
 	"opms/controllers/users"
 
 	"github.com/astaxie/beego"
+	"opms/controllers/contract"
 )
 
 func init() {
@@ -235,4 +236,9 @@ func init() {
 	beego.Router("/permission/add", &groups.FormPermissionController{})
 	beego.Router("/permission/edit/:id", &groups.FormPermissionController{})
 
+	//合同管理 /contract/manage
+	beego.Router("/contract/manage", &contract.ManagerContractController{})
+	beego.Router("/contract/add", &contract.ManagerContractController{})
+
+	beego.Router("/contract/add", &contract.ManagerContractController{})
 }
