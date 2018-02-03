@@ -879,6 +879,72 @@ CREATE TABLE `pms_users_profile` (
 
 insert  into `pms_users_profile`(`userid`,`realname`,`sex`,`birth`,`email`,`webchat`,`qq`,`phone`,`tel`,`address`,`emercontact`,`emerphone`,`departid`,`positionid`,`lognum`,`ip`,`lasted`) values (65140463652311040,'lock',1,'1993-03-06','lock888@tom.com','','','13524612512','','','lock','13524396382',1462290127694985332,1462292065226423828,5,'',1517472446),(178968718338953216,'admin',1,'2018-02-01','admin@admin.com','admin','123456','13812345678','021-12345678','上海市浦东新区','admin','admin',1462290127694985332,1462292006260420932,6,'127.0.0.1',1517629678),(1461312703628858832,'李白',1,'1985-12-12','test@163.com','milu365','49732343','13754396432','021-3432423','九新公路华西办公楼7楼','zfancy','137245613126',1462290228639093428,1462292041515367932,10,'',1517471596),(1467191338628906628,'张三',1,'1985-12-12','test@test.com','zs-milu365','903561702','13524512531','021-84122521','九新公路','lock','135245132623',1462290199274575028,1462292041515367932,1,'',1517454772),(1468140265954907628,'李四',1,'1994-08-11','cto@nahehuo.com','zs-milu365','903561702','13524396586','021-84122521','九新公路华西办公楼','lock','135245132623',1462290127694985332,1462292053049130632,6,'',1517454207),(1468915433602979028,'朱笑天',1,'1992-09-10','test@test.coma','zs-milu365','903561702','13524512531','021-84122521','外滩一号','lock','135245132623',1462290199274575028,1462292041515367932,1,'',1517454752),(1469024587469707428,'李浩',1,'1997-09-06','test@test.com','ls-milu365','903561702','13521234231','021-84122521','外滩一号','李呀','135245132623',1462290228639093428,1462292006260420932,2,'',1517454734);
 
+
+
+
+/*!房产交易系统开始 */
+DROP TABLE IF EXISTS `pms_customer`;
+CREATE TABLE `pms_customer` (
+  `customer_id` bigint(20) NOT COMMENT '用户id，主键id',
+  `real_name` varchar(15) DEFAULT NULL COMMENT '姓名',
+  `sex` tinyint(1) DEFAULT '1' COMMENT '1-男,2-女',
+  `birth` varchar(15) DEFAULT NULL COMMENT '出生日期',,
+  `email` varchar(30) DEFAULT NULL COMMENT '邮箱',
+  `webchat` varchar(15) DEFAULT NULL COMMENT '微信号',
+  `qq` varchar(15) DEFAULT NULL COMMENT 'qq号',
+  `phone` varchar(15) DEFAULT NULL COMMENT '手机',
+  `tel` varchar(20) DEFAULT NULL COMMENT '固定电话',
+  `address` varchar(100) DEFAULT NULL COMMENT '地址',
+  `photo` varchar(200) DEFAULT NULL COMMENT '头像地址',
+  `customer_type` varchar(2) DEFAULT NULL COMMENT '客户类型，1-卖家，2-买家,3-中介',
+  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
+  `update_time` timestamp NOT NULL  COMMENT '更新时间',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  PRIMARY KEY (`customer_id`),  
+  KEY `INDEX_RSL` (`realname`,`sex`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户信息表';
+
+
+DROP TABLE IF EXISTS `pms_contract`;
+CREATE TABLE `pms_contract` (
+  `contract_id` bigint(20) NOT NULL COMMENT '合同id，主键id',
+  `contract_name` varchar(200) DEFAULT NULL COMMENT '合同名称',
+  `contract_content` varchar(100) DEFAULT NULL COMMENT '合同内容',
+  `photo` varchar(2000) DEFAULT NULL COMMENT '头像地址',
+  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
+  `update_time` timestamp NOT NULL  COMMENT '更新时间',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  PRIMARY KEY (`contract_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同信息表';
+
+
+DROP TABLE IF EXISTS `pms_contract_status`;
+CREATE TABLE `pms_contract_status` (
+  `status_id` bigint(20) NOT COMMENT '合同状态表id，主键id',
+  `contract_id` bigint(20)  COMMENT '合同id',
+  `buyer_id` bigint(20)  COMMENT '买家id',
+  `seller_id` bigint(20)  COMMENT '卖家id',
+  `contract_status` int(3)  COMMENT '当前合同状态，1-买家已交定金，2-买家已交首付款，3-卖家已过户给买家，4-买家办理公积金贷款中，5-买家办理商业贷款中，6-买家办理组合贷款中（公积金+商业贷款），7-买家全款买房，8-付尾款，9-交易结束',
+  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
+  `update_time` timestamp NOT NULL  COMMENT '更新时间',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同状态表';
+
+DROP TABLE IF EXISTS `pms_contract_record`;
+CREATE TABLE `pms_contract_record` (
+  `record_id` bigint(20) NOT NULL COMMENT '记录id，主键id',
+  `contract_id` bigint(20) NOT NULL COMMENT '合同id',
+   `contract_status` int(3)  COMMENT '当前合同状态，1-买家已交定金，2-买家已交首付款，3-卖家已过户给买家，4-买家办理公积金贷款中，5-买家办理商业贷款中，6-买家办理组合贷款中（公积金+商业贷款），7-买家全款买房，8-付尾款，9-交易结束',
+   `record_time` timestamp NOT NULL  COMMENT '记录时间',
+  `insert_time` timestamp NOT NULL  COMMENT '插入时间',
+  `update_time` timestamp NOT NULL  COMMENT '更新时间',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  PRIMARY KEY (`record_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同交易记录表';
+
+/***** 房产交易系统结束 ******/
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
