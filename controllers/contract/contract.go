@@ -13,6 +13,12 @@ type ManagerContractController struct {
 }
 
 
+func (this *ManagerContractController) Get() {
+	this.TplName = "contract/index.tpl"
+}
+
+
+
 func (this *ManagerContractController) Post() {
 
 }
