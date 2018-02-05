@@ -42,6 +42,12 @@ type AddContractController struct {
 	controllers.BaseController
 }
 
+
+
+
+
+
+
 /*
 	跳转方法
  */
@@ -49,10 +55,16 @@ func (this *AddContractController) Get() {
 	this.TplName = "contract/contract-add.tpl"
 }
 
+
+type SubmitDataContractController struct {
+	controllers.BaseController
+}
+
+
 /*
 	method提交方法
  */
-func (this *AddContractController) Post() {
+func (this *SubmitDataContractController) Post() {
 	/***
 		合同名称
 	 */

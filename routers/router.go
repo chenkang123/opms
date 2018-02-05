@@ -239,4 +239,9 @@ func init() {
 	//合同管理 /contract/manage
 	beego.Router("/contract/manage", &contract.ManagerContractController{})
 	beego.Router("/contract/add", &contract.AddContractController{})
+	beego.Router("/contract/submitData", &contract.SubmitDataContractController{})
+
+
+
+
 }
