@@ -32,6 +32,15 @@ type AddContractController struct {
 	controllers.BaseController
 }
 
+func (this *AddContractController) Get() {
+
+	if !strings.Contains(this.GetSession("userPermission").(string), "permission-manage") {
+		this.Abort("401")
+	}
+
+	this.TplName = "contract/contract-add.tpl"
+}
+
 /***
 	合同编辑
  */
