@@ -42,12 +42,6 @@ type AddContractController struct {
 	controllers.BaseController
 }
 
-
-
-
-
-
-
 /*
 	跳转方法
  */
@@ -55,11 +49,9 @@ func (this *AddContractController) Get() {
 	this.TplName = "contract/contract-add.tpl"
 }
 
-
 type SubmitDataContractController struct {
 	controllers.BaseController
 }
-
 
 /*
 	method提交方法
@@ -101,6 +93,14 @@ func (this *SubmitDataContractController) Post() {
 		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorEndTime}
 		this.ServeJSON()
 	}
+
+	//插入db
+
+
+
+
+
+
 	this.TplName = "contract/index.tpl"
 }
 
