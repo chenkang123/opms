@@ -5,6 +5,16 @@ import (
 	"strings"
 )
 
+const (
+	errorContractName string = "请填写合同名称"
+
+	errorContractContent string = "请填写合同内容"
+
+	errorStartTime string = "请填写合同开始时间"
+
+	errorEndTime string = "请填写合同结束时间"
+)
+
 /***
 	合同管理controller
  */
@@ -38,11 +48,47 @@ type AddContractController struct {
 func (this *AddContractController) Get() {
 	this.TplName = "contract/contract-add.tpl"
 }
+
 /*
 	method提交方法
  */
 func (this *AddContractController) Post() {
+	/***
+		合同名称
+	 */
+	contractName := this.GetString("contractName")
+	if "" == contractName {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorContractName}
+		this.ServeJSON()
+	}
 
+	/***
+	合同内容
+	*/
+	contractContent := this.GetString("contractContent")
+
+	if "" == contractContent {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorContractContent}
+		this.ServeJSON()
+	}
+	/***
+		合同开始时间
+		*/
+	startTime := this.GetString("startTime")
+
+	if "" == startTime {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorStartTime}
+		this.ServeJSON()
+	}
+	/***
+			合同结束时间
+			*/
+	endTime := this.GetString("endTime")
+
+	if "" == endTime {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorEndTime}
+		this.ServeJSON()
+	}
 	this.TplName = "contract/index.tpl"
 }
 

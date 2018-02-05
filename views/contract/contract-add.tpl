@@ -21,7 +21,7 @@
           <section class="panel">
             <header class="panel-heading"> {{.title}} </header>
             <div class="panel-body">
-              <form class="form-horizontal adminex-form" id="contract-form" type="post" action="" >
+              <form class="form-horizontal adminex-form" id="contract-form" type="post" action="/contract/add" >
                 <header><b> 合同信息 </b></header>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">合同名称</label>
