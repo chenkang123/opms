@@ -32,13 +32,18 @@ type AddContractController struct {
 	controllers.BaseController
 }
 
+/*
+	跳转方法
+ */
 func (this *AddContractController) Get() {
-
-	if !strings.Contains(this.GetSession("userPermission").(string), "permission-manage") {
-		this.Abort("401")
-	}
-
 	this.TplName = "contract/contract-add.tpl"
+}
+/*
+	method提交方法
+ */
+func (this *AddContractController) Post() {
+
+	this.TplName = "contract/index.tpl"
 }
 
 /***
