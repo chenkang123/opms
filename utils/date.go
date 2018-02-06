@@ -56,3 +56,15 @@ func GetDateParse(dates string) int64 {
 	parse, _ := time.ParseInLocation("2006-01-02", dates, loc)
 	return parse.Unix()
 }
+
+/***
+	获取当前时间,格式 yyyy-MM-dd HH:mm:ss
+ */
+func GetDateString() string {
+	now := time.Now()
+	tm := time.Unix(now, 0)
+	return tm.Format("2006-01-02 01:01:01")
+}
+
+
+

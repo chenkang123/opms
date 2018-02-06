@@ -3,6 +3,8 @@ package contract
 import (
 	"opms/controllers"
 	"strings"
+	"opms/utils"
+	. "opms/models/contract"
 )
 
 const (
@@ -95,8 +97,15 @@ func (this *SubmitDataContractController) Post() {
 	}
 
 	//插入db
-
-
+	var contract Contract
+	contractId := utils.SnowFlakeId()
+	contract.ContractId = contractId
+	contract.ContractName = contractName
+	contract.ContractContent = contractContent
+	contract.StartTime = startTime
+	contract.EndTime = endTime
+	contract.Photo = endTime
+	contract.InsertTime = endTime
 
 
 
