@@ -5,6 +5,7 @@ import (
 	"strings"
 	"opms/utils"
 	. "opms/models/contract"
+	"github.com/astaxie/beego/orm"
 )
 
 const (
@@ -105,11 +106,14 @@ func (this *SubmitDataContractController) Post() {
 	contract.StartTime = startTime
 	contract.EndTime = endTime
 	contract.Photo = endTime
-	contract.InsertTime = endTime
-
-
-
-
+	contract.InsertTime = utils.GetDateString()
+	contract.UpdateTime = utils.GetDateString()
+	contract.IsActive = true
+	InsertContract(contract)
+	//if err == nil {
+	//
+	//}
+	//
 	this.TplName = "contract/index.tpl"
 }
 
@@ -125,4 +129,10 @@ type EditContractController struct {
  */
 type DelContractController struct {
 	controllers.BaseController
+}
+
+func InsertContract(contract Contract) error {
+	o := orm.NewOrm()
+	_, err := o.Insert(contract)
+	return err
 }
