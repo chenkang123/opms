@@ -127,8 +127,3 @@ type DelContractController struct {
 	controllers.BaseController
 }
 
-func InsertContract(contract PmsContract) error {
-	o := orm.NewOrm()
-	_, err := o.Insert(contract)
-	return err
-}
