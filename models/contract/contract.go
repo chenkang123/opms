@@ -23,7 +23,7 @@ type Contract struct {
 }
 
 func (this *Contract) TableName() string {
-	return models.TableName("pms_contract")
+	return models.TableName("contract")
 }
 
 func init() {
