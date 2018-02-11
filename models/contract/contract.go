@@ -15,11 +15,11 @@ type Contract struct {
 	ContractName    string `orm:"column(contract_name)"`
 	ContractContent string `orm:"column(contract_content)"`
 	Photo           string `orm:"column(photo)"`
-	StartTime       string `orm:"column(starttime)"`
-	EndTime         string `orm:"column(endtime)"`
-	InsertTime      string `orm:"column(inserttime)"`
-	UpdateTime      string `orm:"column(updatetime)"`
-	IsActive        bool   `orm:"column(isactive)"`
+	StartTime       string `orm:"column(start_time)"`
+	EndTime         string `orm:"column(end_time)"`
+	InsertTime      string `orm:"column(insert_time)"`
+	UpdateTime      string `orm:"column(update_time)"`
+	IsActive        bool   `orm:"column(is_active)"`
 }
 
 func (this *Contract) TableName() string {

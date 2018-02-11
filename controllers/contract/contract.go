@@ -125,4 +125,3 @@ type EditContractController struct {
 type DelContractController struct {
 	controllers.BaseController
 }
-
