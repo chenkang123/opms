@@ -5,7 +5,6 @@ import (
 	"strings"
 	"opms/utils"
 	. "opms/models/contract"
-	"github.com/astaxie/beego/orm"
 )
 
 const (
