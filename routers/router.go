@@ -244,5 +244,5 @@ func init() {
 
 	//客户管理
 	beego.Router("/customer/manage", &customer.ManagerCustomerController{})
-
+	beego.Router("/customer/add", &customer.AddCustomerController{})
 }

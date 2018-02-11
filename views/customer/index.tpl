@@ -30,7 +30,7 @@
         <li> <a href="/contract/manage">客户管理</a> </li>
         <li class="active"> 客户 </li>
       </ul>
-      <div class="pull-right"><a href="/contract/add" class="btn btn-success">+添加新客户</a></div>
+      <div class="pull-right"><a href="/customer/add" class="btn btn-success">+添加新客户</a></div>
     </div>
     <!-- page heading end-->
     <!--body wrapper start-->
