@@ -109,11 +109,7 @@ func (this *SubmitDataContractController) Post() {
 	contract.InsertTime = utils.GetDateString()
 	contract.UpdateTime = utils.GetDateString()
 	contract.IsActive = true
-	InsertContract(contract)
-	//if err == nil {
-	//
-	//}
-	//
+	AddContract(contract)
 	this.TplName = "contract/index.tpl"
 }
 
@@ -131,7 +127,7 @@ type DelContractController struct {
 	controllers.BaseController
 }
 
-func InsertContract(contract Contract) error {
+func InsertContract(contract PmsContract) error {
 	o := orm.NewOrm()
 	_, err := o.Insert(contract)
 	return err

@@ -10,6 +10,11 @@ import (
 	"github.com/astaxie/beego/context"
 )
 
+
+
+
+
+
 func main() {
 	beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 	beego.ErrorHandler("404", page_not_found)
