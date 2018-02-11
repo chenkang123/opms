@@ -18,6 +18,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"opms/controllers/contract"
+	"opms/controllers/customer"
 )
 
 func init() {
@@ -241,7 +242,7 @@ func init() {
 	beego.Router("/contract/add", &contract.AddContractController{})
 	beego.Router("/contract/submitData", &contract.SubmitDataContractController{})
 
-
-
+	//客户管理
+	beego.Router("/customer/manage", &customer.ManagerCustomerController{})
 
 }
