@@ -33,7 +33,15 @@ type Sex struct {
 	desc string
 }
 
-func GetSex()([]Sex) {
+type CustomerType struct {
+	code string
+	desc string
+}
+
+/****
+	获取性别列表
+ */
+func GetSex() ([]Sex) {
 	var male Sex
 	var female Sex
 	male.code = "1"
@@ -43,6 +51,29 @@ func GetSex()([]Sex) {
 	var result []Sex
 	result[0] = male
 	result[1] = female
+	return result
+}
+
+/****
+获取客户类型列表
+ */
+func GetCustomerType() ([]CustomerType) {
+	//客户类型，1-卖家，2-买家,3-中介
+	var buy CustomerType
+	var sell CustomerType
+	var agency CustomerType
+	sell.code = "1"
+	sell.desc = "卖家"
+	buy.code = "2"
+	buy.desc = "买家"
+
+	agency.code = "3"
+	agency.desc = "中介"
+
+	var result []CustomerType
+	result[0] = buy
+	result[1] = sell
+	result[1] = agency
 	return result
 }
 

@@ -33,7 +33,12 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">客户性别</label>
                   <div class="col-sm-4">
-                    <input type="text" name="sex"  value="" class="form-control" required placeholder="请填写客户真实姓名!">
+                    <select id="sex" class="form-control"  name="sex" >
+                      <option value="">请选择客户性别</option>
+                        {{range .sexArray}}
+                      <option value="{{.code}}">{{.desc}}</option>
+                        {{end}}
+                    </select>
                   </div>
                 </div>
                 <!--客户出生日期 -->
@@ -62,6 +67,18 @@
                   <label class="col-sm-2 col-sm-2 control-label">客户QQ</label>
                   <div class="col-sm-4">
                     <input type="text" name="qq"  value="" class="form-control" required placeholder="请填写客户qq!">
+                  </div>
+                </div>
+                 <!--客户类型 -->
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">客户类型</label>
+                  <div class="col-sm-4">
+                    <select id="sex" class="form-control"  name="sex" >
+                      <option value="">请选择客户类型</option>
+                        {{range .customerTypeArray}}
+                      <option value="{{.code}}">{{.desc}}</option>
+                        {{end}}
+                    </select>
                   </div>
                 </div>
                 <!--客户手机号 -->
