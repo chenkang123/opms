@@ -33,7 +33,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">客户性别</label>
                   <div class="col-sm-4">
-                    <select id="sex" class="form-control"  name="sex" >
+                    <select id="sex" class="form-control"  name="sex" required >
                       <option value="">请选择客户性别</option>
                         {{range .sexArray}}
                       <option value="{{.Code}}">{{.Desc}}</option>
@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">客户类型</label>
                   <div class="col-sm-4">
-                    <select id="sex" class="form-control"  name="sex" >
+                    <select id="customerType" class="form-control"  name="customerType" required >
                       <option value="">请选择客户类型</option>
                         {{range .customerTypeArray}}
                       <option value="{{.Code}}">{{.Desc}}</option>
