@@ -36,7 +36,7 @@
                     <select id="sex" class="form-control"  name="sex" >
                       <option value="">请选择客户性别</option>
                         {{range .sexArray}}
-                      <option value="{{.code}}">{{.desc}}</option>
+                      <option value="{{.Code}}">{{.Desc}}</option>
                         {{end}}
                     </select>
                   </div>
@@ -76,7 +76,7 @@
                     <select id="sex" class="form-control"  name="sex" >
                       <option value="">请选择客户类型</option>
                         {{range .customerTypeArray}}
-                      <option value="{{.code}}">{{.desc}}</option>
+                      <option value="{{.Code}}">{{.Desc}}</option>
                         {{end}}
                     </select>
                   </div>

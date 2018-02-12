@@ -29,26 +29,26 @@ type Customer struct {
 }
 
 type Sex struct {
-	code string
-	desc string
+	Code string
+	Desc string
 }
 
 type CustomerType struct {
-	code string
-	desc string
+	Code string
+	Desc string
 }
 
 /****
 	获取性别列表
  */
-func GetSex() ([]Sex) {
+func GetSex() ([2]Sex) {
 	var male Sex
 	var female Sex
-	male.code = "1"
-	male.desc = "男"
-	female.code = "2"
-	female.desc = "女"
-	var result []Sex
+	male.Code = "1"
+	male.Desc = "男"
+	female.Code = "2"
+	female.Desc = "女"
+	var result [2]Sex
 	result[0] = male
 	result[1] = female
 	return result
@@ -57,23 +57,23 @@ func GetSex() ([]Sex) {
 /****
 获取客户类型列表
  */
-func GetCustomerType() ([]CustomerType) {
+func GetCustomerType() ([3]CustomerType) {
 	//客户类型，1-卖家，2-买家,3-中介
 	var buy CustomerType
 	var sell CustomerType
 	var agency CustomerType
-	sell.code = "1"
-	sell.desc = "卖家"
-	buy.code = "2"
-	buy.desc = "买家"
+	sell.Code = "1"
+	sell.Desc = "卖家"
+	buy.Code = "2"
+	buy.Desc = "买家"
 
-	agency.code = "3"
-	agency.desc = "中介"
+	agency.Code = "3"
+	agency.Desc = "中介"
 
-	var result []CustomerType
+	var result [3]CustomerType
 	result[0] = buy
 	result[1] = sell
-	result[1] = agency
+	result[2] = agency
 	return result
 }
 
