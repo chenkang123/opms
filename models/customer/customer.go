@@ -28,6 +28,14 @@ type Customer struct {
 	IsActive     bool   `orm:"column(isActive)"`
 }
 
+func (this *Customer) TableName() string {
+	return models.TableName("customer")
+}
+
+func init() {
+	orm.RegisterModel(new(Customer))
+}
+
 type Sex struct {
 	Code string
 	Desc string
@@ -77,10 +85,23 @@ func GetCustomerType() ([3]CustomerType) {
 	return result
 }
 
-func (this *Customer) TableName() string {
-	return models.TableName("customer")
-}
+func AddCustomer(customer Customer) error {
 
-func init() {
-	orm.RegisterModel(new(Customer))
+	o := orm.NewOrm()
+	newCustomer := new(Customer)
+	//utils.deepCopy(customer,newCustomer)
+	//newCustomer.CustomerId = customer.CustomerId
+	//newCustomer.Sex = customer.Sex
+	//newCustomer.IsActive = customer.IsActive
+	//newCustomer.InsertTime = customer.InsertTime
+	//newCustomer.Photo = customer.Photo
+	//newCustomer.Address = customer.Address
+	//newCustomer.Birth = customer.Birth
+	//newCustomer.CustomerType = customer.CustomerType
+	//newCustomer.Email = customer.Email
+	//newCustomer.Phone = customer.Phone
+	//newCustomer.QQ = customer.QQ
+	//newCustomer.UpdateTime = customer.UpdateTime
+	_, err := o.Insert(newCustomer)
+	return err
 }
