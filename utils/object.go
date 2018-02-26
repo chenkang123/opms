@@ -8,7 +8,7 @@ import (
 /***
 	对象copy
  */
-func deepCopy(dst, src interface{}) error {
+func DeepCopyDeepCopy(dst, src interface{}) error {
 
 	var buf bytes.Buffer
 	if err := gob.NewEncoder(&buf).Encode(src); err != nil {

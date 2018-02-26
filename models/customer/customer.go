@@ -3,6 +3,7 @@ package customer
 import (
 	"github.com/astaxie/beego/orm"
 	"opms/models"
+	"opms/utils"
 )
 
 /********
@@ -89,19 +90,7 @@ func AddCustomer(customer Customer) error {
 
 	o := orm.NewOrm()
 	newCustomer := new(Customer)
-	//utils.deepCopy(customer,newCustomer)
-	//newCustomer.CustomerId = customer.CustomerId
-	//newCustomer.Sex = customer.Sex
-	//newCustomer.IsActive = customer.IsActive
-	//newCustomer.InsertTime = customer.InsertTime
-	//newCustomer.Photo = customer.Photo
-	//newCustomer.Address = customer.Address
-	//newCustomer.Birth = customer.Birth
-	//newCustomer.CustomerType = customer.CustomerType
-	//newCustomer.Email = customer.Email
-	//newCustomer.Phone = customer.Phone
-	//newCustomer.QQ = customer.QQ
-	//newCustomer.UpdateTime = customer.UpdateTime
+	utils.DeepCopyDeepCopy(customer,newCustomer)
 	_, err := o.Insert(newCustomer)
 	return err
 }

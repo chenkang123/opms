@@ -4,6 +4,7 @@ import (
 	"opms/controllers"
 	"strings"
 	. "opms/models/customer"
+	"opms/utils"
 )
 
 type ManagerCustomerController struct {
@@ -111,6 +112,25 @@ func (this *SubmitDataCustomerController) Post() {
 		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorAddress}
 		this.ServeJSON()
 	}
+
+	var customer Customer
+
+	customer.CustomerId = utils.SnowFlakeId()
+	customer.UpdateTime = utils.GetDateString()
+	customer.QQ = qq
+	customer.Phone = phone
+	customer.Email = email
+	customer.CustomerType = customerType
+	customer.Birth = birth
+	customer.Address = address
+	customer.Photo = address
+	customer.InsertTime = utils.GetDateString()
+	customer.IsActive = true
+	customer.Sex = sex
+	customer.RealName = realName
+	customer.Tel = tel
+	customer.Webchat = wechat
+	AddCustomer(customer)
 	this.TplName = "contract/index.tpl"
 
 }
