@@ -13,7 +13,7 @@ import (
  */
 type Customer struct {
 	CustomerId   int64  `orm:"pk;column(customer_id)"`
-	RealName     string `orm:"column(realNmae)"`
+	RealName     string `orm:"column(real_Name)"`
 	Sex          string `orm:"column(sex)"`
 	Birth        string `orm:"column(birth)"`
 	Email        string `orm:"column(email)"`
@@ -23,10 +23,10 @@ type Customer struct {
 	Tel          string `orm:"column(tel)"`
 	Address      string `orm:"column(address)"`
 	Photo        string `orm:"column(photo)"`
-	CustomerType string `orm:"column(customerType)"`
-	InsertTime   string `orm:"column(insertTime)"`
-	UpdateTime   string `orm:"column(updateTime)"`
-	IsActive     bool   `orm:"column(isActive)"`
+	CustomerType string `orm:"column(customer_Type)"`
+	InsertTime   string `orm:"column(insert_Time)"`
+	UpdateTime   string `orm:"column(update_Time)"`
+	IsActive     bool   `orm:"column(is_Active)"`
 }
 
 func (this *Customer) TableName() string {
