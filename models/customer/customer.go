@@ -90,7 +90,7 @@ func AddCustomer(customer Customer) error {
 
 	o := orm.NewOrm()
 	newCustomer := new(Customer)
-	utils.DeepCopyDeepCopy(customer,newCustomer)
+	utils.DeepCopyDeepCopy(newCustomer,customer)
 	_, err := o.Insert(newCustomer)
 	return err
 }
