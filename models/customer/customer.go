@@ -114,9 +114,6 @@ func ListCustomer(condArr map[string]string, page int, offset int) (num int64, e
 	var customer []Customer
 	num, errs := qs.Limit(offset, start).All(&customer)
 	return num, errs, customer
-
-
-
 }
 
 
@@ -131,4 +128,17 @@ func CountCustomer(condArr map[string]string) int64 {
 }
 
 
+
+func GetCustomerByCustomerId(condArr map[string]string,id int) (ops Customer) {
+	o := orm.NewOrm()
+	o.Using("default")
+	qs := o.QueryTable(models.TableName("customer"))
+	cond := orm.NewCondition()
+	cond = cond.And("IsActive", true)
+	cond = cond.And("CustomerId", id)
+	qs = qs.SetCond(cond)
+	var customer Customer
+	qs.All(&customer)
+	return customer
+}
 

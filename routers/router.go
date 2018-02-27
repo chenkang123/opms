@@ -246,4 +246,6 @@ func init() {
 	beego.Router("/customer/manage", &customer.ManagerCustomerController{})
 	beego.Router("/customer/add", &customer.AddCustomerController{})
 	beego.Router("/customer/submitData", &customer.SubmitDataCustomerController{})
+	beego.Router("/customer/edit/:CustomerId", &customer.EditCustomerController{})
+
 }

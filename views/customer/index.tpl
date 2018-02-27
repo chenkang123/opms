@@ -62,6 +62,15 @@
                      	 <td>{{ $v.Birth}}</td>
                      	 <td>{{ $v.Email}}</td>
                      	 <td>{{$v.Phone}}</td>
+                        <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 操作<span class="caret"></span> </button>
+                          <ul class="dropdown-menu">
+                            <li><a href="/customer/edit/{{$v.CustomerId}}">编辑</a></li>
+                            <li><a href="javascript:;" class="js-resumes-delete" data-id="{{$v.CustomerId}}">删除</a></li>
+                          </ul>
+                        </div>
+                        </td>
                      </tr>
                     {{end}}
                     </tbody>

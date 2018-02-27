@@ -7,6 +7,7 @@ import (
 	"opms/utils"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/utils/pagination"
+	"strconv"
 )
 
 type ManagerCustomerController struct {
@@ -155,6 +156,38 @@ func (this *SubmitDataCustomerController) Post() {
 
 }
 
+/***
+	客户修改
+ */
+type EditCustomerController struct {
+	controllers.BaseController
+}
+/***
+	客户修改页面跳转
+ */
+func (this *EditCustomerController) Get() {
+	idstr := this.Ctx.Input.Param(":CustomerId")
+	CustomerId, err := strconv.Atoi(idstr)
+	if err != nil {
+		this.Abort("404")
+	}
+	condArr := make(map[string]string)
+	customer := GetCustomerByCustomerId(condArr,CustomerId)
+	sexArray := GetSex()
+	this.Data["sexArray"] = sexArray
+	//获取客户类型列表
+	customerTypeArray := GetCustomerType()
+	this.Data["customerTypeArray"] = customerTypeArray
+	this.Data["customer"] = customer
+	this.TplName = "customer/customer-edit.tpl"
+}
+/***
+	客户修改页面提交
+ */
+func (this *EditCustomerController) POST() {
+
+}
+
 const (
 	errorRealName string = "请填写真实姓名 !"
 
@@ -175,4 +208,6 @@ const (
 	errorTel string = "请填写客户固定电话 !"
 
 	errorAddress string = "请填写客户固定电话 !"
+
+	netWork string = "网络错误 !"
 )
