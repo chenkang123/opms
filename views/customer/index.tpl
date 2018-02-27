@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-sm-12">
           <section class="panel">
-            <header class="panel-heading"> 客户管理 / 总数：{{.countcontract}}<span class="tools pull-right"><a href="javascript:;" class="fa fa-chevron-down"></a>
+            <header class="panel-heading"> 客户管理 / 总数：{{.countCustomer}}<span class="tools pull-right"><a href="javascript:;" class="fa fa-chevron-down"></a>
               <!--a href="javascript:;" class="fa fa-times"></a-->
               </span> </header>
             <div class="panel-body">
@@ -54,7 +54,17 @@
 						<th>手机号</th>
                       </tr>
                     </thead>
-
+                    <tbody>
+                     {{range $k,$v := .customers}}
+                     <tr>
+                        <td>{{$v.RealName}}</td>
+                     	 <td>{{if eq "1" $v.Sex}}男{{else}}女{{end}}</td>
+                     	 <td>{{ $v.Birth}}</td>
+                     	 <td>{{ $v.Email}}</td>
+                     	 <td>{{$v.Phone}}</td>
+                     </tr>
+                    {{end}}
+                    </tbody>
                   </table>
                 </form>
                 {{template "inc/page.tpl" .}}
