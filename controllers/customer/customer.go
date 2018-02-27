@@ -5,6 +5,8 @@ import (
 	"strings"
 	. "opms/models/customer"
 	"opms/utils"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/utils/pagination"
 )
 
 type ManagerCustomerController struct {
@@ -16,6 +18,24 @@ func (this *ManagerCustomerController) Get() {
 	if !strings.Contains(this.GetSession("userPermission").(string), "permission-manage") {
 		this.Abort("401")
 	}
+	//查询列表
+	page, err := this.GetInt("p")
+	if err != nil {
+		page = 1
+	}
+
+	offset, err1 := beego.AppConfig.Int("pageoffset")
+	if err1 != nil {
+		offset = 15
+	}
+	condArr := make(map[string]string)
+	countCustomer := CountCustomer(condArr)
+	paginator := pagination.SetPaginator(this.Ctx, offset, countCustomer)
+	_, _, customers := ListCustomer(condArr, page, offset)
+	this.Data["paginator"] = paginator
+	this.Data["condArr"] = condArr
+	this.Data["customers"] = customers
+	this.Data["countCustomer"] = countCustomer
 	this.TplName = "customer/index.tpl"
 }
 
@@ -131,7 +151,7 @@ func (this *SubmitDataCustomerController) Post() {
 	customer.Tel = tel
 	customer.Webchat = wechat
 	AddCustomer(customer)
-	this.TplName = "contract/index.tpl"
+	this.TplName = "customer/index.tpl"
 
 }
 

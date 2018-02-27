@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	"opms/models"
 	"opms/utils"
+	"github.com/astaxie/beego"
 )
 
 /********
@@ -94,3 +95,40 @@ func AddCustomer(customer Customer) error {
 	_, err := o.Insert(newCustomer)
 	return err
 }
+
+func ListCustomer(condArr map[string]string, page int, offset int) (num int64, err error, ops []Customer) {
+	o := orm.NewOrm()
+	o.Using("default")
+	qs := o.QueryTable(models.TableName("customer"))
+	cond := orm.NewCondition()
+	cond = cond.And("IsActive", true)
+	qs = qs.SetCond(cond)
+	if page < 1 {
+		page = 1
+	}
+	if offset < 1 {
+		offset, _ = beego.AppConfig.Int("pageoffset")
+	}
+	start := (page - 1) * offset
+	qs = qs.OrderBy("-customerId")
+	var customer []Customer
+	num, errs := qs.Limit(offset, start).All(&customer)
+	return num, errs, customer
+
+
+
+}
+
+
+func CountCustomer(condArr map[string]string) int64 {
+
+	o := orm.NewOrm()
+	qs := o.QueryTable(models.TableName("customer"))
+	cond := orm.NewCondition()
+	cond = cond.And("IsActive", true)
+	num, _ := qs.SetCond(cond).Count()
+	return num
+}
+
+
+
