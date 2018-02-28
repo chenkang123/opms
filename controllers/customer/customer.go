@@ -156,6 +156,109 @@ func (this *SubmitDataCustomerController) Post() {
 
 }
 
+
+
+type SubmitEditDataCustomerController struct {
+	controllers.BaseController
+}
+
+func (this *SubmitEditDataCustomerController) Post() {
+	if !strings.Contains(this.GetSession("userPermission").(string), "permission-manage") {
+		this.Abort("401")
+	}
+	//真实姓名
+	realName := this.GetString("realName")
+	if "" == realName {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorRealName}
+		this.ServeJSON()
+	}
+	//客户性别
+	sex := this.GetString("sex")
+	if "" == sex {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorSex}
+		this.ServeJSON()
+	}
+	//客户出生日期
+	birth := this.GetString("birth")
+	if "" == birth {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorBirth}
+		this.ServeJSON()
+	}
+	//客户邮箱
+	email := this.GetString("email")
+	if "" == email {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorEmail}
+		this.ServeJSON()
+	}
+
+	//客户微信
+	wechat := this.GetString("wechat")
+	if "" == wechat {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorWeChat}
+		this.ServeJSON()
+	}
+	//客户QQ
+	qq := this.GetString("qq")
+	if "" == qq {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorQQ}
+		this.ServeJSON()
+	}
+
+	//客户类型
+	customerType := this.GetString("customerType")
+	if "" == customerType {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorCustomerType}
+		this.ServeJSON()
+	}
+	//客户手机号
+	phone := this.GetString("phone")
+	if "" == phone {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorPhone}
+		this.ServeJSON()
+	}
+	//客户固定电话
+	tel := this.GetString("tel")
+	if "" == tel {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorTel}
+		this.ServeJSON()
+	}
+	///客户地址
+	address := this.GetString("address")
+	if "" == address {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorAddress}
+		this.ServeJSON()
+	}
+
+	CustomerId, _ := this.GetInt64("CustomerId")
+
+	if 0 == CustomerId {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": errorId}
+		this.ServeJSON()
+	}
+
+
+
+	var customer Customer
+
+	customer.CustomerId = CustomerId
+	customer.UpdateTime = utils.GetDateString()
+	customer.QQ = qq
+	customer.Phone = phone
+	customer.Email = email
+	customer.CustomerType = customerType
+	customer.Birth = birth
+	customer.Address = address
+	customer.Photo = address
+	customer.Sex = sex
+	customer.RealName = realName
+	customer.Tel = tel
+	customer.Webchat = wechat
+	UpdateCustomer(customer)
+	this.TplName = "customer/index.tpl"
+
+}
+
+
 /***
 	客户修改
  */
@@ -209,5 +312,8 @@ const (
 
 	errorAddress string = "请填写客户固定电话 !"
 
-	netWork string = "网络错误 !"
+	//netWork string = "网络错误 !"
+
+	errorId string = "id为null" +
+		" !"
 )

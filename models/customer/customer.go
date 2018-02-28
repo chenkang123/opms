@@ -96,6 +96,21 @@ func AddCustomer(customer Customer) error {
 	return err
 }
 
+func UpdateCustomer(customer Customer) error {
+
+	o := orm.NewOrm()
+	newCustomer := new(Customer)
+	utils.DeepCopyDeepCopy(newCustomer,customer)
+	_, err := o.Update(newCustomer)
+	return err
+}
+
+
+
+
+
+
+
 func ListCustomer(condArr map[string]string, page int, offset int) (num int64, err error, ops []Customer) {
 	o := orm.NewOrm()
 	o.Using("default")

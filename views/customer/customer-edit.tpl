@@ -20,12 +20,13 @@
           <section class="panel">
             <header class="panel-heading"> {{.title}} </header>
             <div class="panel-body">
-              <form class="form-horizontal adminex-form" id="contract-form" method="post" action="/customer/submitData" >
+              <form class="form-horizontal adminex-form" id="contract-form" method="post" action="/customer/submitEditData" >
                 <header><b> 客户信息 </b></header>
                 <!--客户真实姓名 -->
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">客户真实姓名</label>
                   <div class="col-sm-4">
+                     <input type="hidden" name="CustomerId"  value="{{.customer.CustomerId}}" class="form-control" />
                     <input type="text" name="realName"  value="{{.customer.RealName}}" class="form-control" required placeholder="请填写客户真实姓名!">
                   </div>
                 </div>
@@ -34,10 +35,9 @@
                   <label class="col-sm-2 col-sm-2 control-label">客户性别</label>
                   <div class="col-sm-4">
                     <select id="sex" class="form-control"  name="sex" required >
-                      <option value="">请选择客户性别</option>
-                       {{range .sexArray}}
-                          <option {{if eq .customer.Sex .Code }}selected{{end}}  value="{{ .Code}}">{{.Desc}}</option>
-                        {{end}}
+                       <option value="">请选择客户性别</option>
+                       <option {{if eq "1" .customer.Sex }}selected{{end}}  value="1">男</option>
+                       <option {{if eq "2" .customer.Sex }}selected{{end}}  value="2">女</option>
                     </select>
                   </div>
                 </div>
@@ -75,7 +75,10 @@
                   <div class="col-sm-4">
                     <select id="customerType" class="form-control"  name="customerType" required >
                       <option value="">请选择客户类型</option>
-
+                      <!-- 1-卖家，2-买家,3-中介-->
+                       <option {{if eq "1" .customer.CustomerType }}selected{{end}}  value="1">卖家</option>
+                        <option {{if eq "2" .customer.CustomerType }}selected{{end}}  value="2">买家</option>
+                         <option {{if eq "3" .customer.CustomerType }}selected{{end}}  value="1">中介</option>
                     </select>
                   </div>
                 </div>
@@ -83,14 +86,14 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">客户手机号</label>
                   <div class="col-sm-4">
-                    <input type="text" name="phone"  value="" class="form-control" required placeholder="请填写客户手机号!">
+                    <input type="text" name="phone"  value="{{.customer.Phone}}" class="form-control" required placeholder="请填写客户手机号!">
                   </div>
                 </div>
                  <!--客户固定电话 -->
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">客户固定电话</label>
                   <div class="col-sm-4">
-                    <input type="text" name="tel"  value="" class="form-control" required placeholder="请填写客户固定电话!">
+                    <input type="text" name="tel"  value="{{.customer.Tel}}" class="form-control" required placeholder="请填写客户固定电话!">
                   </div>
                 </div>
 
@@ -98,7 +101,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">客户地址</label>
                   <div class="col-sm-4">
-                    <input type="text" name="address"  value="" class="form-control" required placeholder="请填写客户地址!">
+                    <input type="text" name="address"  value="{{.customer.Address}}" class="form-control" required placeholder="请填写客户地址!">
                   </div>
                 </div>
                 <div class="form-group">
